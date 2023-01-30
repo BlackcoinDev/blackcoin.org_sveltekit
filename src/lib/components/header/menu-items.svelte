@@ -98,21 +98,20 @@
         </ul>
     </li>
 	 -->
-	<li id="linksBtn" on:click={() => openClose()}>
+	 <li id="linksBtn" on:click={() => openClose()} on:keydown={(e) => { if (e.key === 'Enter' || e.key === ' ') openClose() }}>
 		{i18n(navI18n, 'links', lang)}
-
+	
 		<ul id="links" style="display:{!!links ? 'flex' : 'none'};">
-			<button class="x">X</button>
+			<button class="x" on:click={() => openClose()} on:keydown={(e) => { if (e.key === 'Enter' || e.key === ' ') openClose() }}>X</button>
 			{#each linkArr as l}
-				<li
-					on:click={() => open = !open}>
+				<li on:click={() => open = !open} on:keydown={(e) => { if (e.key === 'Enter' || e.key === ' ') open = !open }}>
 					<a rel="noopener" target="_blank noreferer" href={l.url}>
 						{l.title}
 					</a>
 				</li>
 			{/each}
 		</ul>
-	</li>
+	</li>	
 </ul>
 
 <style>
